@@ -97,7 +97,7 @@ class ApplicationController < Sinatra::Base
       if user.balance < params[:subtract].to_d
         erb :withdraw_error
       else
-        user.balance -= params[:add].to_d
+        user.balance = user.balance - params[:add].to_d
         user.save
         redirect "/account"
       end
