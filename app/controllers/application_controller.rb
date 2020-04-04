@@ -83,6 +83,18 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get "/subtract" do
+    if logged_in?
+      erb :subtract
+    else
+      redirect "/failure"
+    end
+  end
+
+  post "/subtract" do
+    
+  end
+
   helpers do
     def logged_in?
       !!session[:user_id]
