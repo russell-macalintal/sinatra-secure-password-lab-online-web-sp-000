@@ -73,10 +73,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/add" do
-    user = current_user
-    user.balance += params[:add].to_d
-    user.save
-    redirect "/account"
+    if logged_in?
+      user = current_user
+      user.balance += params[:add].to_d
+      user.save
+      redirect "/account"
+    else
+      redirect "/failure"
+    end
   end
 
   helpers do
