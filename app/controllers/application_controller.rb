@@ -65,7 +65,18 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/add" do
-    erb :add
+    if logged_in?
+      erb :add
+    else
+      redirect "/failure"
+    end
+  end
+
+  post "/add" do
+    user = current_user
+    user.balance += params[:add].to_d
+    user.save
+    redirect "/account"
   end
 
   helpers do
