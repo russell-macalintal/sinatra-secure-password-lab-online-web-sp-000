@@ -92,7 +92,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/subtract" do
-    
+
   end
 
   helpers do
