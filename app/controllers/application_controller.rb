@@ -92,7 +92,18 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/subtract" do
-
+    if logged_in?
+      user = current_user
+      if user.balance < params[:subtract].to_d
+        erb :withdraw_error
+      else
+        user.balance -= params[:add].to_d
+        user.save
+        redirect "/account"
+      end
+    else
+      redirect "/failure"
+    end
   end
 
   helpers do
