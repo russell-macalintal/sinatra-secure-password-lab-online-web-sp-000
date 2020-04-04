@@ -64,6 +64,33 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
+  get "/add" do
+    if logged_in?
+      erb :add
+    else
+      redirect "/failure"
+    end
+  end
+
+  post "/add" do
+    if logged_in?
+      user = current_user
+      user.balance += params[:add].to_f
+      user.save
+      "#{current_user.balance}"
+    else
+      redirect "/failure"
+    end
+  end
+
+  get "/withdraw" do
+    erb :withdraw
+  end
+
+  post "/withdraw" do
+
+  end
+
   helpers do
     def logged_in?
       !!session[:user_id]

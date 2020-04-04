@@ -1,5 +1,8 @@
 <h1>Welcome</h1>
 
-<p>We are currently working on your account.</p>
+<p>Hello, <%=current_user.username%></p>
+<p>You have a balance of: <%= current_user.balance %></p>
+<p>Choose option: </p>
+<p><a href='/add'>Add Money</a> or <a href='/withdraw'>Withdraw</a></p>
 
 <p><a href="/logout">Log Out</a></p>
